@@ -35,7 +35,7 @@ if __name__ == "__main__":
 
     gui.configure(background="white")
     gui.title("Calculation")
-    gui.geometry("200x350")
+    gui.geometry("300x450")
     equation = StringVar()
 
     expression_field = Entry(gui, textvariable=equation)
