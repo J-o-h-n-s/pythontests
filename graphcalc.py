@@ -35,7 +35,7 @@ if __name__ == "__main__":
 
     gui.configure(background="white")
     gui.title("Calculation")
-    #gui.geometry("270x150")
+    gui.geometry("200x350")
     equation = StringVar()
 
     expression_field = Entry(gui, textvariable=equation)
@@ -104,12 +104,12 @@ button8.grid(row=4, column=1)
 button9.grid(row=4, column=2)
 button0.grid(row=5, column=0)
 plus.grid(row=2, column=3)
-minus.grid(row='3', column='3')
-multiply.grid(row='4', column='3')
-divide.grid(row='5', column='3')
-equal.grid(row='6', column='3')
-clear.grid(row='5', column='2')
-decimal.grid(row='5', column='1')
+minus.grid(row=3, column=3)
+multiply.grid(row=4, column=3)
+divide.grid(row=5, column=3)
+equal.grid(row=5, column=2)
+clear.grid(row=6, column=3)
+decimal.grid(row=5, column=1)
 
 
 gui.mainloop()
