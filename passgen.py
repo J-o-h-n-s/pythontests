@@ -11,6 +11,8 @@ number = int(number)
 lengt = int(lengt)
 
 print('Following passowrds saved in passwords.txt:')
+print('\n')
+
 
 for pwd in range(number):
     passwords = ''
@@ -18,9 +20,27 @@ for pwd in range(number):
         passwords += random.choice(chars)
     print(passwords)
 
-with open('Passwords.txt', 'w') as f:
-    with redirect_stdout(f):
-        print(passwords)
+txt = passwords
+
+with open('Passwords.csv', 'w') as file:
+    for line in txt:
+        file.write(line)
+        file.write('\n')
+
+
+
+#file = open("Passowrds.txt", 'w')
+#str = repr(passwords)
+#file.write('\n' + str + '\n')
+#file.close
+#f = open('Passowrds.txt', 'r')
+#if f.mode=='r':
+#    contents=f.read()
+
+
+#with open('Passwords.txt', 'w') as f:
+#    with redirect_stdout(f):
+#        print(passwords)
 
 
 
