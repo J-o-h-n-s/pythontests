@@ -18,10 +18,10 @@ while True:
     now = datetime.now()
     current_time = now.strftime("%H:%M:%S")
     if not in_position:
-        #if last_price > df.price.mean():
-        buyprice = last_price
-        in_position = True
-        print('Bought ETH @ ' +str(buyprice) + 'USDT at ' + current_time)
+        if last_price > df.price.mean():
+            buyprice = last_price
+            in_position = True
+            print('Bought ETH @ ' +str(buyprice) + 'USDT at ' + current_time)
     if in_position:
         if last_price > 1.003 * buyprice or last_price < 0.997 * buyprice:
             sellprice = last_price
@@ -38,4 +38,4 @@ while True:
             else:
                 print('Loss is: ' + str(profit) + 'USDT')
                 cum_profit = cum_profit + float(profit)
-                print('Cumulatice profit:' + str(cum_profit) + 'USDT')
+                print('Cumulative profit:' + str(cum_profit) + 'USDT')
