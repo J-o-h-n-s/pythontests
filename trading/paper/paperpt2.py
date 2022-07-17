@@ -8,8 +8,6 @@ engine = create_engine('sqlite:///Liveprice.db')
 
 now = datetime.now()
 
-current_time = now.strftime("%H:%M:%S")
-
 in_position = False
 trades = "0"
 cum_profit = "0"
@@ -19,6 +17,7 @@ while True:
     last_price = df.price.iloc[-1]
     cum_profit = float(cum_profit)
     trades = int(trades)
+    current_time = now.strftime("%H:%M:%S")
     if not in_position:
         #if last_price > df.price.mean():
         buyprice = last_price
