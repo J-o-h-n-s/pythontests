@@ -14,9 +14,19 @@ def generate_random_password():
     digits_count = int(input("Enter digits count: "))
     special_characters_count = int(input("Enter special characters count: "))
 
+#    if alphabets_count != int:
+#        print('Number of letters is not a number')
+#        exit()
+#    if digits_count != int:
+#        print('Number of digits is not a number')
+#        exit()
+#    if special_characters_count != int:
+#        print('Number of special characters is not a number')
+#        exit()
+
     character_count = alphabets_count + digits_count + special_characters_count
 
-    if special_characters_count > length:
+    if character_count > length:
         print("Characters total count is greater than desired password length")
         return
 
@@ -36,18 +46,34 @@ def generate_random_password():
 
         if character_count < length:
             random.shuffle(characters)
-            for c in range(length - character_count):
+            for e in range(length - character_count):
                 password.append(random.choice(characters))
 
                 random.shuffle(password)
 
 
-
+            if str(password) < str(length):
+                print('Error')
+            else:
                 print("".join(password))
 
-                with open('Passowrds.txt', 'w') as file:
-                    for line in password:
-                        file.write(line)
-                        file.write('\n')
+#            with open('Passowrds.txt', 'w') as file:
+#                for line in str(password):
+#                    file.write(line)
+#                    file.write('\n')
+
+
+
+
+
+
+#            file = open('Passwords.txt', 'w')
+#            str1 = repr(password)
+#            file.write('\n' + str1 + '\n')
+#            file.close
+#            f = open('Passwords.txt', 'r')
+#            if f .mode == 'r':
+#                contents=f.read
+#                contents
 
 generate_random_password()
