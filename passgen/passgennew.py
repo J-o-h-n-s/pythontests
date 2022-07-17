@@ -1,10 +1,19 @@
 import string
 import random
+from os import system, name
+
 
 alphabets = list(string.ascii_letters)
 digits = list(string.digits)
 special_characters = list("!@#$%^&*()£")
 characters = list(string.ascii_letters + string.digits + '!@#$%^&*()£')
+
+def clear():
+    if name == 'nt':
+        _ = system('CLS')
+
+    else:
+        _ = system('clear')
 
 def generate_random_password():
     length = int(input("Enter password length: "))
@@ -28,10 +37,13 @@ def generate_random_password():
 
     if character_count > length:
         print("Characters total count is greater than desired password length")
-        return
+        exit()
 
+    clear()
 
     password = []
+    print("Following passwords saved to Passwords.txt, please move the file before generating new passords, as a new generation will overwrite existing")
+    print('\n')
 
     for pwd in range(amount):
         password = []
@@ -57,15 +69,11 @@ def generate_random_password():
             else:
                 print("".join(password))
 
+
 #            with open('Passowrds.txt', 'w') as file:
 #                for line in str(password):
 #                    file.write(line)
 #                    file.write('\n')
-
-
-
-
-
 
 #            file = open('Passwords.txt', 'w')
 #            str1 = repr(password)
