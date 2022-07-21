@@ -20,7 +20,7 @@ for pwd in range(number):
         passwords += random.choice(chars)
     print(passwords)
 
-txt = passwords
+txt = str(passwords)
 
 with open('Passwords.csv', 'w') as file:
     for line in txt:

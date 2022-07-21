@@ -3,10 +3,10 @@ import random
 from os import system, name
 
 
-letters = list(string.ascii_letters)
-digits = list(string.digits)
-special_characters = list("!@#$%^&*()£")
-characters = list(string.ascii_letters + string.digits + '!@#$%^&*()£')
+letters = string.ascii_letters
+digits = string.digits
+special_characters = "!@#$%^&*()£"
+characters = string.ascii_letters + string.digits + '!@#$%^&*()£'
 
 def clear():
     if name == 'nt':
@@ -34,36 +34,39 @@ def generate_random_password():
 
     clear()
 
-    password = []
     print("Following passwords saved to Passwords.txt, please move the file before generating new passords, as a new generation will overwrite existing")
     print('\n')
 
-    for pwd in range(amount):
-        password = []
-        for c in range(digits_count):
-            password.append(random.choice(digits))
+    extra_characters_count = length - character_count
+    passwords = []
+    for _ in range(amount):
+        chosen_digits = random.choices(digits, k=digits_count)
+        chosen_letters = random.choices(letters, k=letters_count)
+        chosen_special_characters = random.choices(
+            special_characters, k=special_characters_count
+        )
 
-        for c in range(letters_count):
-            password.append(random.choice(letters))
+        
+        extra_characters = random.choices(characters, k=extra_characters_count)
 
-        for c in range(special_characters_count):
-            password.append(random.choice(special_characters))
-
-        if character_count < length:
-            random.shuffle(characters)
-            for c in range(length - character_count):
-                password.append(random.choice(characters))
-
-                random.shuffle(password)
-
-
-            if str(password) < str(length):
-                return()
-            else:
-                print("".join(password))
-
+        password = (
+            chosen_digits
+            + chosen_letters
+            + chosen_special_characters
+            + extra_characters
+        )
+        random.shuffle(password)
+        password.append('\n')
+        passwords.append("".join(password))
+        
+        
+        if str(password) < str(length):
+            return()
+        else:
+            print("".join(password))
 
     with open("Passwords.txt", "w") as f:
-        f.writelines(password)
+        f.writelines(passwords)
+
 
 generate_random_password()
