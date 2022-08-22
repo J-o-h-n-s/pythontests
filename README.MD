@@ -1,4 +1,4 @@
-My pwersonal library of Python projects
+My personal library of Python projects
 
 1. Calc
     Self explainitory, calculators. Everybody has to make one.
@@ -8,6 +8,6 @@ My pwersonal library of Python projects
 
 3. Trading
     Some trading bots for crypto, not in use.
-    
+
 4. Monitoring
     A script made to monitor the booking for my accomodation for Uni.
