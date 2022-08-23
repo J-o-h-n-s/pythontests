@@ -1,10 +1,8 @@
-from asyncio import wait_for
 import logging
 import time
 import os
 from os.path import join, dirname
 from datetime import datetime
-from selenium import webdriver
 from selenium.webdriver import Firefox
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.by import By
@@ -82,8 +80,6 @@ except TimeoutException:
 link = driver.find_element(By.LINK_TEXT, "Click HERE to Access Accommodation Portal")
 link.click()
 
-print('Accommodation site open...')
-
 wait.until(EC.number_of_windows_to_be(2))
 
 for window_handle in driver.window_handles:
@@ -94,6 +90,8 @@ for window_handle in driver.window_handles:
 
 waitforload("div-X9c2a6828b2f849d0aaa5b6301587f37f")
 time.sleep(2)
+
+print('Accommodation site open...')
 
 focused_window = driver.current_window_handle
 
@@ -166,23 +164,35 @@ time.sleep(15)
 body = driver.find_element(By.TAG_NAME, 'body')
 
 try:
-  check = driver.find_element(By.ID, 'sX4e5110377edb43cfbd490fcfee60ccda')
+  body = driver.find_element(By.TAG_NAME, 'body')
 
-  if 'No Access' in check.text:
-    logger.info('Sjekket : ' + today.strftime("%H:%M %d.%m.%Y")) 
-    print(check.text)
+  if 'No Access' in body.text:
+    logger.info('Sjekket : ' + today.strftime("%H:%M %d.%m.%Y") + ' - ' + body.text) 
+    print(body.text)
 
   else:
-    discord.post(content='Ledig! Book!')
-    print('Ledig! Book!')
-    logger.info('ledig! ' + today.strftime("%H:%M %d.%m.%Y"))
+    boook = driver.find_element(By.ID, 'div-NavButtonNext')
+    boook.click()
+    try:
+      newbody = driver.find_element(By.TAG_NAME, 'body')
+
+      if 'There are no rooms available for you for this process.' in newbody.text:
+        logger.info('Sjekket : ' + today.strftime("%H:%M %d.%m.%Y")) 
+        print(body.text)
+
+      else:
+            discord.post(content='Ledig! Book! @here '+ today.strftime("%H:%M %d.%m.%Y"))
+            print('Ledig! Book!')
+            logger.info('ledig! ' + today.strftime("%H:%M %d.%m.%Y"))
+
+    except Exception as e:
+      logger.info('Error on ' + today.strftime("%H:%M %d.%m.%Y") + ': ' + e.text)
+      discord.post(content='Error while running script @ ' + today.strftime("%H:%M %d.%m.%Y") + ' Error has been logged')
         
 except Exception as e:
   logger.info('Error on ' + today.strftime("%H:%M %d.%m.%Y") + ': ' + e.text)
+  discord.post(content='Error while running script @ ' + today.strftime("%H:%M %d.%m.%Y") + ' Error has been logged')
 
 driver.close()
 
 exit()
-
-
-
