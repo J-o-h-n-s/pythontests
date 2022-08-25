@@ -19,7 +19,7 @@ cwd = os.getcwd()
 
 dotenv_path = join(cwd, '.env')
 load_dotenv(dotenv_path)
-log_path = join(cwd, 'Monitoring.log')
+log_path = join(cwd, 'monitoring.log')
 
 ID = os.environ.get("ID")
 PASS = os.environ.get("PASS")
