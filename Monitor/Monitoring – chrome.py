@@ -45,15 +45,11 @@ wait = WebDriverWait(driver, 10)
 
 print('Running...')
 
-#discord.post(content='Running...')
-
 driver.get('https://osis.kingston.ac.uk')
 
 focused_window = driver.current_window_handle
 
 assert len(driver.window_handles) == 1
-
-driver.get('https://osis.kingston.ac.uk')
 
 waitforload('MUA_CODE.DUMMY.MENSYS')
 
@@ -62,7 +58,6 @@ id_box.send_keys(ID)
 
 pass_box = driver.find_element("id", "PASSWORD.DUMMY.MENSYS")
 pass_box.send_keys(PASS)
-
 
 login_button = driver.find_element("name", "BP101.DUMMY_B.MENSYS")
 login_button.click()
@@ -74,7 +69,7 @@ try:
     myElem = WebDriverWait(driver, newdelay).until(EC.presence_of_element_located((By.LINK_TEXT, "Click HERE to Access Accommodation Portal")))
 except TimeoutException:
     print("Loading took too much time!")
-    logger.info('Error @ : ' + today.strftime("%H:%M %d.%m.%Y") + " Loading took too much time!") 
+    logger.info('Error @ : ' + today.strftime("%H:%M %d.%m.%Y") + " Loading took too much time!")
 
 link = driver.find_element(By.LINK_TEXT, "Click HERE to Access Accommodation Portal")
 link.click()
@@ -158,8 +153,6 @@ print('Through... Sleeping...')
 
 time.sleep(15)
 
-body = driver.find_element(By.TAG_NAME, 'body')
-
 try:
   body = driver.find_element(By.TAG_NAME, 'body')
 
@@ -196,6 +189,7 @@ try:
         else:
           discord.post(content='Annen en Walked & Chanselors ledig @here '+ today.strftime("%H:%M %d.%m.%Y"))
           print('Anenn ledig, helst sjekk')
+          logger.info('Annen ledig, vennligst sjekk ' + today.strftime("%H:%M %d.%m.%Y"))
 
     except Exception as e:
       logger.info('Error on ' + today.strftime("%H:%M %d.%m.%Y") + ': ' + e.text)
@@ -208,7 +202,3 @@ except Exception as e:
   driver.close()
 
 exit()
-
-
-
-
