@@ -15,9 +15,11 @@ os.system('cls' if os.name == 'nt' else 'clear')
 
 print('Initializing...')
 
-dotenv_path = join(dirname(__file__), '.env')
+cwd = os.getcwd()
+
+dotenv_path = join(cwd, '.env')
 load_dotenv(dotenv_path)
-log_path = join(dirname(__file__), 'monitoring.log')
+log_path = join(cwd, 'Monitoring.log')
 
 ID = os.environ.get("ID")
 PASS = os.environ.get("PASS")
@@ -74,7 +76,7 @@ try:
     myElem = WebDriverWait(driver, newdelay).until(EC.presence_of_element_located((By.LINK_TEXT, "Click HERE to Access Accommodation Portal")))
 except TimeoutException:
     print("Loading took too much time!")
-    logger.info('Error @ : ' + today.strftime("%H:%M %d.%m.%Y") + " Loading took too much time!")
+    logger.info('Error @ : ' + today.strftime("%H:%M %d.%m.%Y") + " Loading took too much time!") 
 
 link = driver.find_element(By.LINK_TEXT, "Click HERE to Access Accommodation Portal")
 link.click()

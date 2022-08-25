@@ -1,6 +1,7 @@
 import logging
 import time
 import os
+from os.path import join
 from datetime import datetime
 from selenium.webdriver import Firefox
 from selenium.webdriver.firefox.options import Options
@@ -15,9 +16,11 @@ os.system('cls' if os.name == 'nt' else 'clear')
 
 print('Initializing...')
 
-dotenv_path = '/home/$USER/Monitor/.env'
+cwd = os.getcwd()
+
+dotenv_path = join(cwd, '.env')
 load_dotenv(dotenv_path)
-log_path = '/home/$USER/Monitor/monitoring.log'
+log_path = join(cwd, 'Monitoring.log')
 
 ID = os.environ.get("ID")
 PASS = os.environ.get("PASS")

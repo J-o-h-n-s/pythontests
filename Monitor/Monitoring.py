@@ -16,9 +16,11 @@ os.system('cls' if os.name == 'nt' else 'clear')
 
 print('Initializing...')
 
-dotenv_path = join(dirname(__file__), '.env')
+cwd = os.getcwd()
+
+dotenv_path = join(cwd, '.env')
 load_dotenv(dotenv_path)
-log_path = join(dirname(__file__), 'monitoring.log')
+log_path = join(cwd, 'Monitoring.log')
 
 ID = os.environ.get("ID")
 PASS = os.environ.get("PASS")
