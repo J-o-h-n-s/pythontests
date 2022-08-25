@@ -184,10 +184,22 @@ try:
         driver.close()
 
       else:
-            discord.post(content='Ledig! Book! @here '+ today.strftime("%H:%M %d.%m.%Y"))
+        whichProperty = driver.find_element(By.CLASS_NAME, 'RMSTreeFolderBranch')
+        if 'Walkden' in whichProperty.text:
+            discord.post(content='Walkden Ledig! Book! @here '+ today.strftime("%H:%M %d.%m.%Y"))
             print('Ledig! Book!')
-            logger.info('ledig! ' + today.strftime("%H:%M %d.%m.%Y"))
+            logger.info('Walkden ledig! ' + today.strftime("%H:%M %d.%m.%Y"))
             driver.close()
+
+        elif 'Chancellors' in whichProperty.text:
+            discord.post(content='Chancellors Ledig! Book! @here '+ today.strftime("%H:%M %d.%m.%Y"))
+            print('Ledig! Book!')
+            logger.info('Chancellors ledig! ' + today.strftime("%H:%M %d.%m.%Y"))
+            driver.close()
+            
+        else:
+          discord.post(content='Annen en Walked & Chanselors ledig @here '+ today.strftime("%H:%M %d.%m.%Y"))
+          print('Anenn ledig, helst sjekk')
 
     except Exception as e:
       logger.info('Error on ' + today.strftime("%H:%M %d.%m.%Y") + ': ' + e.text)
