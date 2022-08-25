@@ -3,8 +3,7 @@ import time
 import os
 from os.path import join, dirname
 from datetime import datetime
-from selenium.webdriver import Firefox
-from selenium.webdriver.firefox.options import Options
+from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
@@ -32,9 +31,6 @@ fh = logging.FileHandler(log_path)
 fh.setLevel(logging.DEBUG)
 logger.addHandler(fh)
 
-opts = Options()
-opts.add_argument("--headless")
-
 delay = 10
 def waitforload(wait_id):
   try:
@@ -43,7 +39,7 @@ def waitforload(wait_id):
     print("Loading took too much time!")
     logger.info('Error on ' + today.strftime("%H:%M %d.%m.%Y") + " Loading took too much time!")
 
-driver = Firefox(options=opts)
+driver = webdriver.Chrome()
 
 wait = WebDriverWait(driver, 10)
 
@@ -103,6 +99,8 @@ book_button.click()
 time.sleep(2)
 
 print('In Booking portal...')
+
+#wait.until(EC.number_of_windows_to_be(2))
 
 for window_handle in driver.window_handles:
     if window_handle != focused_window:
@@ -200,3 +198,7 @@ except Exception as e:
   driver.close()
 
 exit()
+
+
+
+

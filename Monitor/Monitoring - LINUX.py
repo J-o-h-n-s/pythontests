@@ -1,7 +1,6 @@
 import logging
 import time
 import os
-from os.path import join, dirname
 from datetime import datetime
 from selenium.webdriver import Firefox
 from selenium.webdriver.firefox.options import Options
@@ -16,9 +15,9 @@ os.system('cls' if os.name == 'nt' else 'clear')
 
 print('Initializing...')
 
-dotenv_path = join(dirname(__file__), '.env')
+dotenv_path = '/home/$USER/Monitor/.env'
 load_dotenv(dotenv_path)
-log_path = join(dirname(__file__), 'monitoring.log')
+log_path = '/home/$USER/Monitor/monitoring.log'
 
 ID = os.environ.get("ID")
 PASS = os.environ.get("PASS")
@@ -74,7 +73,7 @@ login_button.click()
 print('Logged in...')
 
 try:
-    newdelay = 15
+    newdelay= 15
     myElem = WebDriverWait(driver, newdelay).until(EC.presence_of_element_located((By.LINK_TEXT, "Click HERE to Access Accommodation Portal")))
 except TimeoutException:
     print("Loading took too much time!")
@@ -103,6 +102,8 @@ book_button.click()
 time.sleep(2)
 
 print('In Booking portal...')
+
+#wait.until(EC.number_of_windows_to_be(2))
 
 for window_handle in driver.window_handles:
     if window_handle != focused_window:
