@@ -100,8 +100,6 @@ time.sleep(2)
 
 print('In Booking portal...')
 
-#wait.until(EC.number_of_windows_to_be(2))
-
 for window_handle in driver.window_handles:
     if window_handle != focused_window:
         driver.close()
