@@ -37,7 +37,7 @@ def waitforload(wait_id):
     myElem = WebDriverWait(driver, delay).until(EC.presence_of_element_located((By.ID, wait_id)))
   except TimeoutException:
     print("Loading took too much time!")
-    logger.info('Error @ : ' + today.strftime("%H:%M %d.%m.%Y") + " Loading took too much time!")
+    logger.info('Error @ : ' + today.strftime("%H:%M %d.%m.%Y") + ' - ' + "Loading took too much time!")
 
 driver = webdriver.Chrome()
 
@@ -69,7 +69,7 @@ try:
     myElem = WebDriverWait(driver, newdelay).until(EC.presence_of_element_located((By.LINK_TEXT, "Click HERE to Access Accommodation Portal")))
 except TimeoutException:
     print("Loading took too much time!")
-    logger.info('Error @ : ' + today.strftime("%H:%M %d.%m.%Y") + " Loading took too much time!")
+    logger.info('Error @ : ' + today.strftime("%H:%M %d.%m.%Y") + ' - ' + "Loading took too much time!")
 
 link = driver.find_element(By.LINK_TEXT, "Click HERE to Access Accommodation Portal")
 link.click()
@@ -168,7 +168,7 @@ try:
       newbody = driver.find_element(By.TAG_NAME, 'body')
 
       if 'There are no rooms available for you for this process.' in newbody.text:
-        logger.info('Sjekket : ' + today.strftime("%H:%M %d.%m.%Y")) 
+        logger.info('Sjekket : ' + today.strftime("%H:%M %d.%m.%Y" + ' - ' + newbody.text)) 
         print(body.text)
         driver.close()
 
