@@ -17,13 +17,6 @@ def generate_password(length):
     digits_count = random.randint(1, length - letters_count - 1)
     special_characters_count = length - letters_count - digits_count
 
-    char_count = letters_count + digits_count + special_characters_count
-
-    if char_count > length:
-        raise ValueError(
-            "Characters total count is greater than desired password length"
-        )
-
     characters = (
         random.choices(letters, k=letters_count)
         + random.choices(digits, k=digits_count)
